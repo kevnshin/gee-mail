@@ -1,0 +1,44 @@
+<style>
+table,th,td
+{
+	border:1px solid black;
+
+}
+
+th
+{
+	text-align:left;
+}
+
+tr
+{
+	display: block;
+    border-bottom: 1px solid black;
+}
+
+.content
+{
+	border: 1px solid black;
+}
+
+.menu
+{
+	border: 1px solid black;
+}
+
+#date
+{
+width:100px;
+}
+
+#sender
+{
+width:200px;
+}
+
+#subject
+{
+width:500px;
+}
+
+</style>
