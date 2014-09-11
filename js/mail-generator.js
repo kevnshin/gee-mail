@@ -10,7 +10,10 @@ var body = ['I am never gonna see a merman, ever. You haven\'t seen my drawer of
 
 function loadGeeMails(){
 	for (var i = 0; i < 10; i++){
+		//load the message object
 		var message = generateMessage();
+
+		//Add message to windows.geemail array
 		window.geemails.push(message);
 	}
 }
@@ -42,8 +45,60 @@ function getRandomDate(){
 	return new Date(year, month, day, hours, minutes);
 }
 
-//load intial GeeMail data to window object
-(function(){
+	//load intial GeeMail data to window object
+function load(){
 	window.geemails = [];
 	loadGeeMails();	
-})();
+};
+
+
+//all interactive functions go in here
+var main = function(){
+
+	//hide all message contents
+	$('.messageBody').hide();
+
+	//load intial GeeMail data to window object
+	load();
+
+	$('h1').text('gmail');
+
+	//if there are new messages
+	if(window.geemails != null)
+	{
+		//how many new messages
+		var newMessages = window.geemails.length();
+		var messageCounter = 0;
+
+		while(messageCounter<newMessages)
+		{
+			$('.message:eq(0)').clone().addClass('new').appendTo(".allMessages");
+			$('.new:eq('messageCounter')').text(window.geemails[0]);
+
+			messageCounter++;
+		}
+	}
+
+
+
+
+	//when a message is clicked
+	$('.message').click(function(){
+
+		//show or hide current message body
+		$(this).children('.messageBody').toggle();
+
+	});
+
+
+
+
+
+
+
+};
+
+
+$(document).ready(main);
+
+

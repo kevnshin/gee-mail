@@ -1,74 +1,90 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title>Gee-Mail</title>
-		<script src="js/mail-generator.js"></script>
-		<script>
-			loadGeeMails();
-		</script>
-		<script>
-			generateMessage();
-		</script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
 
-		
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="js/mail-generator.js" type = "text/javascript"></script>
+
+		<link href="http://s3.amazonaws.com/codecademy-content/courses/ltp/css/bootstrap.css" rel="stylesheet" >
+		<link href="css/style.css" rel="stylesheet" media="screen">
+	
 	</head>
 	<body>
 	
-		<div id="container" style="width:1000px">
 
-			<div id="header">
-				<h1 style="margin-bottom:0;">Gee-Mail</h1>
-				<p>Email for the rest of us</p>
+		<div class="header">
+			<h1>Gee-Mail</h1>
+			<p>Email for the rest of us</p>
+		</div>
+
+		<div class="content">
+			<div class="col-md-2">
+				<div class="menu">
+					<div class="inbox">
+						<h4>Inbox</h4>
+					</div>
+					<div class="trash">
+						<h4>Trash</h4>
+					</div>
+
+				</div>
 			</div>
 
-		<div class="menu" style="background-color:#A9E2F3;height:200px;width:100px;float:left;">
-			<b>Inbox (X)</b>
-			<br>Sent
-			<br>Trash
+
+			<div class="col-md-10">
+				<div class="allMessages">
+					<div class="info">
+						<div class="description row">
+							<div class="col-md-2">
+								<p>DATE</p>
+							</div>
+
+							<div class='col-md-3'>
+								<p>SENDER</p>
+							</div>
+
+							<div class="col-md-3">
+								<p>SUBJECT</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="message">
+						<div class="description row">
+							<div class="col-md-2">
+								<p class="date">9/2/2014</p>
+							</div>
+
+							<div class='col-md-3'>
+								<p class="sender">Bill Gates</p>
+							</div>
+
+							<div class="col-md-3">
+								<p class="subject">Hello!</p>
+							</div>
+						</div>
+
+						<div class="messageBody row">
+				          <div class="col-md-1">&nbsp;</div>
+				          <div class="col-md-11">
+				            <p>Hi Kevin!<br>How are you doing? It's been a while but just wanted to say hi and let you know what brilliant thing I'm working on now. I'm planning on just buying the planet with the ridiculous amount of money I have. I actually thought of you when planning this venture. Do you think you'd be interested in joining me?<br><br>Think about it!<br>-Billy</p>
+				          </div>
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+
+			</div>	
 		</div>
 
-		<div class="content" style="background-color:#EEEEEE;height:200px;width:800px;float:left;">
-			<table style="width:800px">
-			<tr>
-			  <th id="date">Date</th>
-			  <th id="sender">Sender</th>		
-			  <th id="subject">Subject</th>
-			</tr>
-			<tr>
-			  <td id="date">06/21/2014</td>
-			  <td id="sender">Kevin Shin</td>		
-			  <td id="subject">TEST</td>
-			</tr>
-			<tr>
-			  <td id="date">06/21/2014</td>
-			  <td id="sender">Kevin Shin</td>		
-			  <td id="subject">TEST</td>
-			</tr>
-			<tr>
-			  <td id="date">06/21/2014</td>
-			  <td id="sender">Kevin Shin</td>		
-			  <td id="subject">TEST</td>
-			</tr>
-			<tr>
-			  <td id="date">06/21/2014</td>
-			  <td id="sender">Kevin Shin</td>		
-			  <td id="subject">TEST</td>
-			</tr>
-			<tr>
-			  <td id="date">06/21/2014</td>
-			  <td id="sender">Kevin Shin</td>		
-			  <td id="subject">TEST</td>
-			</tr>
-			<tr>
-			  <td id="date">06/21/2014</td>
-			  <td id="sender">Kevin Shin</td>		
-			  <td id="subject">TEST</td>
-			</tr>
 
-			</table>
 
-		</div>
+
+	</div>
 
 		
-	</body>
-</html>
