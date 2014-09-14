@@ -45,48 +45,114 @@ function getRandomDate(){
 	return new Date(year, month, day, hours, minutes);
 }
 
-	//load intial GeeMail data to window object
+//load intial GeeMail data to window object
 function load(){
 	window.geemails = [];
 	loadGeeMails();	
 };
 
 
-//all interactive functions go in here
-var main = function(){
-
-	//hide all message contents
-	$('.messageBody').hide();
-
-	//load intial GeeMail data to window object
-	load();
-
-	$('h1').text('gmail');
+var insertMessageContent = function(numNewMessage){
 
 	//if there are new messages
 	if(window.geemails != null)
 	{
 		//how many new messages
-		var newMessages = window.geemails.length();
+		var newMessages = numNewMessage;
 		var messageCounter = 0;
 
+		//as long as there are new messages
 		while(messageCounter<newMessages)
 		{
-			$('.message:eq(0)').clone().addClass('new').appendTo(".allMessages");
-			$('.new:eq('messageCounter')').text(window.geemails[0]);
+			//add a new row for messages
+			$('.message:last').clone().addClass('new').prependTo(".allMessages");
+
+			//Get date and time
+			var convertedDate = window.geemails[messageCounter].date.toDateString();
+			var convertedHours = window.geemails[messageCounter].date.getHours();
+			var convertedMinutes = window.geemails[messageCounter].date.getMinutes();
+
+			if(convertedMinutes<10)
+			{
+				convertedMinutes="0"+convertedMinutes;
+				
+			}
+
+			//Is it AM or PM?
+			if(convertedHours>=12)
+			{
+				var AMPM = 'PM';
+			}
+
+			else
+			{
+				var AMPM = 'AM';
+			}
+
+
+			//Add Date, Sender, Subject, and body to new message row
+			$('.date:last').text(convertedDate+' '+convertedHours+':'+convertedMinutes+' '+AMPM);
+			$('.sender:last').text(window.geemails[messageCounter].sender);
+			$('.subject:last').text(window.geemails[messageCounter].subject);
+			$('.messageContent:last').text(window.geemails[messageCounter].body);
 
 			messageCounter++;
 		}
+
+		window.geemails = [];
 	}
 
 
+}
 
+var updateInboxCount= function(){
+
+	//get number of messages (total and new)
+	var totalMessages = $('.message').length;
+	var newMessages = $('.new').length;
+
+	//update inbox counter
+	$('.inbox').text('Inbox ('+newMessages+'/'+totalMessages+')');
+
+}
+
+
+//all interactive functions go in here
+var main = function(){
+
+	//load intial GeeMail data to window object
+	load();
+
+	//hide all message contents
+	$('.messageBody').hide();
+	insertMessageContent(window.geemails.length);
+	updateInboxCount();
+
+
+	//get number of messages (total and new)
+	var totalMessages = $('.message').length;
+	var newMessages = $('.new').length;
+	//update inbox counter
+	$('.inbox').text('Inbox ('+newMessages+'/'+totalMessages+')');
+
+
+	//get new messages every minute
+	setInterval(function(){
+		window.geemails.push(getNewMessage());
+		insertMessageContent(window.geemails.length);
+		updateInboxCount();
+	}, 60000);
 
 	//when a message is clicked
 	$('.message').click(function(){
 
+		//hide all messages
+		$('.messageBody').hide();
+
 		//show or hide current message body
 		$(this).children('.messageBody').toggle();
+		$(this).removeClass('new');
+		updateInboxCount();
 
 	});
 
@@ -98,7 +164,7 @@ var main = function(){
 
 };
 
-
+//load main function only after document is loaded
 $(document).ready(main);
 
 

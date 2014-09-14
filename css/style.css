@@ -2,11 +2,10 @@
 
 .menu {
 	border: 1px solid black;
+	text-align: center;
+	font-size: 20px;
 }
 
-.menu h4{
-	text-align: center;
-}
 
 .info {
 	border: 1px solid black;
@@ -14,6 +13,12 @@
 
 .message {
 	border: 1px solid black;
+	cursor: pointer;
+}
+
+.new
+{
+	background-color: #5ccdc9; 
 }
 
 .info{
@@ -21,6 +26,3 @@
 	border: 1px solid black;
 }
 
-/*.messageBody{
-	display: none;
-}*/s
